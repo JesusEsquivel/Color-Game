@@ -9,10 +9,7 @@ var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode");
 init();
 
-
-
 function init(){
-    //mode buttons event listeners
     setupModeButtons();
     setupSquares();
     reset();
@@ -32,11 +29,8 @@ function setupModeButtons(){
 
 function setupSquares(){
     for(var i = 0; i < squares.length; i++){
-        //add click listeners to squares
         squares[i].addEventListener("click", function(){
-            //grabe color of clicked sqaure
             var clickedColor = this.style.background;
-            //compare color to pickedColor
             if(clickedColor === pickedColor){
                 messageDisplay.textContent = "CORRECT!!!";
                 resetButton.textContent = "Play Again?";
@@ -52,13 +46,10 @@ function setupSquares(){
 
 function reset(){
     colors = generateRandomColors(numSquares);
-    // pick a new color drom array
     pickedColor = pickColor();
-    //change color disp;ay ti match picked color
     colorDisplay.textContent = pickedColor;
     resetButton.textContent = "New Colors";
     messageDisplay.textContent = "";
-    //change colors of squares
     for(var i = 0; i < squares.length; i++){
             if(colors[i]){
                 squares[i].style.display = "block";
@@ -74,9 +65,7 @@ function reset(){
 })
 
 function changeColors(color){
-    // loop throught all squares 
     for(var i = 0; i < squares.length; i++){
-    // change each color to match given colors 
     squares[i].style.background = color;
     }
 }
@@ -87,23 +76,16 @@ function pickColor(){
 }
 
 function generateRandomColors(num){
-    //make an array
     var arr =[]
-    //add num random colors to array
     for(var i = 0; i < num; i++){
-        //get random color and push into arr
         arr.push(randomColor())
     }
-    //tretun that array
     return arr;
 }
 
 function randomColor(){
-    //pick a red from 0 - 255
    var r = Math.floor(Math.random() * 256);
-    //pick a green from 0 - 255
     var g = Math.floor(Math.random() * 256);
-    //pick a blue from 0 - -22
     var b = Math.floor(Math.random() * 256);
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }
